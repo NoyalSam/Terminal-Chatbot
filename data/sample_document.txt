@@ -1,0 +1,71 @@
+RAG GenAI System — Sample Document
+=====================================
+
+This is a placeholder sample document for the RAG GenAI project.
+Replace this file (or drop a PDF into the data/ folder) to use your own content.
+
+Section 1: Introduction to Retrieval Augmented Generation
+----------------------------------------------------------
+Retrieval Augmented Generation (RAG) is a technique that combines information
+retrieval with large language model generation. Instead of relying solely on
+the model's parametric knowledge, RAG retrieves relevant document chunks from
+an external knowledge base and provides them as context to the LLM.
+
+Key benefits of RAG:
+- Reduces hallucinations by grounding answers in source documents
+- Allows knowledge to be updated without retraining the model
+- Provides citations and traceability for generated answers
+- Scales to large document collections via vector similarity search
+
+Section 2: How This System Works
+---------------------------------
+This project implements RAG using the following pipeline:
+
+1. Document Loading: PDF and plain-text files are supported.
+2. Semantic Chunking: Documents are split at topic boundaries using
+   sentence-embedding similarity rather than fixed token counts.
+3. Embedding Generation: Each chunk is embedded using Google Generative AI
+   or OpenAI embeddings.
+4. FAISS Indexing: Embeddings are stored in a FAISS vector index for fast
+   approximate nearest-neighbour search.
+5. Retrieval: At query time, the top-K most similar chunks are retrieved.
+6. Generation: Retrieved chunks are injected into the LLM prompt as context,
+   and the model generates a grounded answer.
+
+Section 3: Agent Architecture
+-------------------------------
+Beyond the basic RAG chain, this system includes a tool-calling agent with
+two tools:
+
+- search_documents: Performs RAG retrieval over the FAISS index.
+- calculator: Evaluates arithmetic expressions safely.
+
+The agent uses the LLM's function-calling capability to decide which tool (if
+any) to invoke for a given user query. This makes the system capable of
+handling mixed queries such as "What is the revenue growth rate mentioned in
+the report, and what is 12.5% of 4800?"
+
+Section 4: Configuration
+--------------------------
+All configuration is managed via environment variables loaded from a .env file.
+Key settings include:
+- EMBEDDING_PROVIDER: "google" or "openai"
+- LLM_PROVIDER: "google" or "openai"
+- RETRIEVER_K: number of chunks retrieved per query (default 4)
+- MEMORY_WINDOW_SIZE: number of conversation turns retained (default 10)
+- SEMANTIC_BREAKPOINT_TYPE: chunking strategy (percentile, standard_deviation)
+
+Section 5: Sample Data
+-----------------------
+The sample annual revenue figures for a fictional company are as follows:
+- 2021: $2.4 million
+- 2022: $3.1 million
+- 2023: $4.8 million
+- 2024: $6.2 million
+
+The compound annual growth rate (CAGR) from 2021 to 2024 was approximately
+37.2%. The primary growth drivers were expansion into Southeast Asian markets
+and a 40% increase in subscription revenue.
+
+The company employs 142 full-time staff across three offices in Singapore,
+Berlin, and Toronto.
