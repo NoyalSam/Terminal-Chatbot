@@ -13,7 +13,7 @@ DocumentLoader
 Normalization            ← spaCy lemmatization (normalizes documents before chunking)
      │
      ▼
-CosineSimilarityChunker   ← sentence-window cosine similarity splitting (replaces SemanticChunker)
+CosineSimilarityChunker   ← sentence-window cosine similarity splitting
      │
      ▼
 EmbeddingFactory         ← Google Generative AI  OR  OpenAI
@@ -202,13 +202,12 @@ rag-genai-project/
 │   ├── __init__.py
 │   └── rag_chain.py
 ├── chunkers/
-│   ├── __init__.py
-│   ├── semantic_chunker.py     # legacy, not used in app.py
-│   └── cosine_chunker.py       # NEW — active chunking strategy
-├── normalization/               # NEW
+│   ├── __init__.py    
+│   └── cosine_chunker.py       
+├── normalization/              
 │   ├── __init__.py
 │   └── lemmatizer.py
-├── pydantic_model/               # NEW
+├── pydantic_model/               
 │   ├── __init__.py
 │   ├── chain.py
 │   ├── prompt.py
