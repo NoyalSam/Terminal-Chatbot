@@ -3,7 +3,7 @@ from config_validator import validate_config
 from loaders.document_loader import load_document
 from normalization import lemmatize_documents 
 from chunkers import cosine_chunk_documents
-
+ 
 from embeddings.embedding_factory import get_embeddings
 from embeddings.llm_factory import get_llm
 
